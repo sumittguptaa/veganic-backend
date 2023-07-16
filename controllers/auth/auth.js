@@ -49,13 +49,13 @@ module.exports.login = async (req, res) => {
 
 module.exports.register = async (req, res) => {
   try {
-    const { email, password, name, userType } = req.body;
+    const { email, password, name, userType,phoneNo } = req.body;
 
     // if any one of the field from email and password is not filled
-    if (!email || !password) {
+    if (!email || !password || !phoneNo) {
       return res.json({
         success: false,
-        message: "email or password is empty",
+        message: "email ,phoneNo or password is empty",
       });
     }
     req.body.password = await bcrypt.hash(password, 10);
